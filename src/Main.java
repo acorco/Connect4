@@ -7,15 +7,19 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int rows = 0, cols = 0;
 
-        do{
-        System.out.print("Quantes files vols? (minim 4) >> ");
-        rows = in.nextInt();
+        do {
+            System.out.print("Quantes files vols? (minim 4) >> ");
+            rows = in.nextInt();
 
-        System.out.print("Quantes columnes vols? (minim 4) >>  ");
-        cols = in.nextInt();
-        }while (rows < 4 && cols < 4);
+            System.out.print("Quantes columnes vols? (minim 4) >>  ");
+            cols = in.nextInt();
+
+        } while (rows < 4 && cols < 4);
 
         char[][] grid = new char[rows][cols];
+
+        final int WIDTH = rows;
+        final int HEIGHT = cols;
 
         //initialize array
         for (int row = 0; row < grid.length; row++) {
@@ -23,7 +27,6 @@ public class Main {
                 grid[row][col] = ' ';
             }
         }
-
 
 
         int turn = 1;
@@ -43,7 +46,7 @@ public class Main {
             boolean validPlay;
             int play;
             do {
-                display(grid);
+                display(grid, WIDTH);
 
                 System.out.print("Torn de " + current.getName() + ", escolleix: ");
                 play = in.nextInt() - 1;
@@ -73,7 +76,7 @@ public class Main {
 
             turn++;
         }
-        display(grid);
+        display(grid, WIDTH);
 
         if (winner) {
             if (current.getName().equals(player1.getName())) {
@@ -87,19 +90,28 @@ public class Main {
 
     }
 
-    public static void display(char[][] grid) {
-        System.out.println(" 1 2 3 4 5 6 7");
-        System.out.println("---------------");
+    public static void display(char[][] grid, int width) {
+        for (int i = 1; i <= width + 1; i++) {
+            System.out.print("|");
+            System.out.print(i);
+
+        }
+        System.out.println("|");
+        System.out.println();
         for (int row = 0; row < grid.length; row++) {
             System.out.print("|");
             for (int col = 0; col < grid[0].length; col++) {
                 System.out.print(grid[row][col]);
                 System.out.print("|");
             }
+            System.out.print("|");
             System.out.println();
-            System.out.println("---------------");
+
         }
-        System.out.println(" 1 2 3 4 5 6 7");
+        for (int i = 1; i <= width + 1; i++) {
+            System.out.print("|");
+            System.out.print(i);
+        }
         System.out.println();
     }
 
@@ -110,7 +122,7 @@ public class Main {
         }
 
         //full column?
-        if (grid[0][column] != ' ') {
+        if (grid[0][column - 1] != ' ') {
             return false;
         }
 
@@ -164,5 +176,5 @@ public class Main {
         }
         return false;
     }
- }
+}
 
