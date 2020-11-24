@@ -1,7 +1,10 @@
-import game.Player;
-import game.Cell;
-import game.Grid;
+/*
+ * Juego conecta 4 simple en Java.
+ * @author Alejandro Córcoles
+ * @author alejandro@corco.technology
+ */
 
+import game.Grid;
 import java.util.Scanner;
 
 public class Main {

@@ -1,9 +1,12 @@
 package game;
 
+/* Función de la clase: Esta clase es la de la cuadrícula entera.
+   Se usará para instanciarla como tablero del juego.
+ */
 public class Grid {
-    private final int _w;
-    private final int _h;
-    private final Cell[][] _grid;
+    private final int _w; // constante width
+    private final int _h; // constante height
+    private final Cell[][] _grid; //declaración de un array de celdas
 
     public Grid(int w, int h) {
         _grid = this._createGrid(w,h);
