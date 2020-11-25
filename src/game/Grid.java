@@ -48,5 +48,16 @@ public class Grid {
             _separator();
         }
     }
+
+    public void insert(int col) throws Exception {
+        this.validateColumn(col);
+
+    }
+
+    private void validateColumn(int col) throws Exception {
+        if(col <= 0 || col > _w){
+            throw new Exception("Aquesta columna no existeix.");
+        }
+    }
 }
 
