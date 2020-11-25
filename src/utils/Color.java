@@ -5,14 +5,14 @@ public enum Color {
     RESET("\033[0m"),
 
     // Colores en negrita
-    BLACK_BOLD("\033[1;30m"),   // Negro
-    RED_BOLD("\033[1;31m"),     // Rojo
-    GREEN_BOLD("\033[1;32m"),   // Verde
-    YELLOW_BOLD("\033[1;33m"),  // Amarillo
-    BLUE_BOLD("\033[1;34m"),    // Azul
+    BLACK_BOLD("\033[1;30m"),   // Negre
+    RED_BOLD("\033[1;31m"),     // Vermell
+    GREEN_BOLD("\033[1;32m"),   // Verd
+    YELLOW_BOLD("\033[1;33m"),  // Groc
+    BLUE_BOLD("\033[1;34m"),    // Blau
     MAGENTA_BOLD("\033[1;35m"), // Magenta
-    CYAN_BOLD("\033[1;36m"),    // Azul
-    WHITE_BOLD("\033[1;37m");   // Blanco
+    CYAN_BOLD("\033[1;36m"),    // Cyan
+    WHITE_BOLD("\033[1;37m");   // Blanc
 
 
 
@@ -24,7 +24,7 @@ public enum Color {
         this.code = code;
     }
 
-    @Override // El override se usa para sustituir la función toString.
+    @Override // El override s'utilitza per substituir la funció toString per la que vull possar. En aquest cas vull que em retorni la variable.
     public String toString() {
         return code;
     }
