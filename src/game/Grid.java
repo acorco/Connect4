@@ -1,5 +1,9 @@
 package game;
 
+import utils.Logger;
+import utils.Color;
+
+
 /* Función de la clase: Esta clase es la de la cuadrícula entera.
    Se usará para instanciarla como tablero del juego.
  */
@@ -60,6 +64,12 @@ public class Grid {
     // Métode per a insertar una fitxa en una columna del grid
     public void insert(int col) throws Exception {
         this.validateColumn(col);
+        for (int row = _grid.length-1; row >= 0; row--){
+            if(_grid[row][col] == " "){
+                _grid[row][col] = "X";
+                break;
+            }
+        }
 
     }
 
