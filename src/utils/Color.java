@@ -15,16 +15,16 @@ public enum Color {
     WHITE_BOLD("\033[1;37m");   // Blanc
 
 
-
     private final String code;
 
 
-     // Constructor del enum
+    // Constructor del enum
     Color(String code) {
         this.code = code;
     }
 
-    @Override // El override s'utilitza per substituir la funció toString per la que vull possar. En aquest cas vull que em retorni la variable.
+    @Override
+    // El override s'utilitza per substituir la funció toString per la que vull possar. En aquest cas vull que em retorni la variable.
     public String toString() {
         return code;
     }

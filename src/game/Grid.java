@@ -64,13 +64,14 @@ public class Grid {
     // Métode per a insertar una fitxa en una columna del grid
     public void insert(int col) throws Exception {
         this.validateColumn(col);
+        col -= 1;
         for (int row = _grid.length-1; row >= 0; row--){
-            if(_grid[row][col] == " "){
-                _grid[row][col] = "X";
-                break;
+            if(_grid[row][col].getContent() == CellContent.EMPTY){
+                _grid[row][col].setContent(CellContent.FILLED);
+                return;
             }
         }
-
+        throw new Exception("Aquesta columna està plena.");
     }
 
     // Métode per a validar si la columna existeix en el grid o no.

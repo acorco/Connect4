@@ -26,7 +26,10 @@ public class Main {
         grid = new Grid(n,m);
         grid.draw();
         System.out.print(Color.RESET);
-        promptColumn();
+        while (true) {
+            promptColumn();
+            grid.draw();
+        }
     }
 
     private static void promptColumn(){

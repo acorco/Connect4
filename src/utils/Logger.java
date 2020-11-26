@@ -16,6 +16,12 @@ public class Logger {
         System.out.print(Color.RESET);
     }
 
+    public static void printf(Color color, String text, Object... params){
+        System.out.print(color);
+        System.out.printf(text, params);
+        System.out.print(Color.RESET);
+    }
+
     /* Funció recursiva que primer comprova si el número introduït
      * és un número int. Si no ho és, llença un missatge d'error i es crida a si mateixa un altre cop.
      */
