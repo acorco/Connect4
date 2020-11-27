@@ -62,12 +62,12 @@ public class Grid {
 
 
     // Métode per a insertar una fitxa en una columna del grid
-    public void insert(int col) throws Exception {
+    public void insert(int col, Player player) throws Exception {
         this.validateColumn(col);
         col -= 1;
         for (int row = _grid.length-1; row >= 0; row--){
-            if(_grid[row][col].getContent() == CellContent.EMPTY){
-                _grid[row][col].setContent(CellContent.FILLED);
+            if(_grid[row][col].getPlayer() == null){
+                _grid[row][col].setPlayer(player);
                 return;
             }
         }

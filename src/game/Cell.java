@@ -6,28 +6,24 @@ import utils.Logger;
 
 
 public class Cell {
-    private CellContent _content;
+    private Player _player;
 
-
-    public Cell(){
-        _content = CellContent.EMPTY;
-    }
 
     public void draw(){
-        if (_content == CellContent.EMPTY){
+        if (_player == null){
             System.out.printf("%2c |", ' ');
         }else{
-            Logger.printf(Color.CYAN_BOLD,"%2c ", 'X');
+            Logger.printf(_player.getColor(),"%2c ", 'X');
             System.out.print('|');
         }
 
     }
 
-    public CellContent getContent(){
-        return this._content;
+    public Player getPlayer(){
+        return this._player;
     }
 
-    public void setContent(CellContent content) {
-        _content = content;
+    public void setPlayer(Player player) {
+        this._player = player;
     }
 }

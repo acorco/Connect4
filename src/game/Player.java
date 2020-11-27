@@ -1,19 +1,22 @@
 package game;
 
+import utils.Color;
+
 public class Player {
-    private String name;
+    private String _name;
+    private Color _color;
 
-    public Player(String name) {
-        this.name = name;
+    public Player(String name, Color color) {
+        this._name = name;
+        this._color = color;
 
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Color getColor(){
+        return _color;
     }
 
-    public String getName() {
-        return name;
+    public String getName(){
+        return _name;
     }
-
 }
