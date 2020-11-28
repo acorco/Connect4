@@ -6,31 +6,33 @@
 
 import game.Grid;
 import game.Player;
+import game.PlayerManager;
 import utils.Color;
 import utils.Logger;
 
-import java.util.Scanner;
-
 public class Main {
-    private static Grid grid;
+    private static Grid _grid;
+    private static PlayerManager _playerManager;
+
     public static void main(String[] args) {
-       displayMenu();
+        _playerManager = new PlayerManager();
+        _displayMenu();
     }
 
-    private static void promptColumn(Player player){
+    private static void _promptColumn(Player player) {
 
         int col = Logger.getInt(player.getName() + ": Columna >> ");
 
 
-        try{
-            grid.insert(col, player);
-        }catch (Exception e){
+        try {
+            _grid.insert(col, player);
+        } catch (Exception e) {
             Logger.println(Color.RED_BOLD, e.getMessage());
-            promptColumn(player);
+            _promptColumn(player);
         }
     }
 
-    private static void displayMenu(){
+    private static void _displayMenu() {
         System.out.println(Color.GREEN_BOLD);
         System.out.println("CONECTA 4 GAME");
         System.out.println("================");
@@ -39,29 +41,43 @@ public class Main {
         System.out.println("3. Exit");
         System.out.println(Color.RESET);
         int opc = Logger.getInt("\nOpció >> ");
-        switch (opc){
+        switch (opc) {
             case 1:
+                String name1 = Logger.getString("Introdueix el nom del primer jugador >> ");
+                String name2 = Logger.getString("Introdueix el nom del segon jugador >> ");
+
                 int n = Logger.getInt("Enter N value >> ");
                 int m = Logger.getInt("Enter M value >> ");
-                grid = new Grid(n,m);
-                grid.draw();
+                _grid = new Grid(n, m);
+                _grid.draw();
 
-                Player player1 = new Player("Alejandro", Color.RED_BOLD);
-                Player player2 = new Player("Ken", Color.BLUE_BOLD);
+                Player player1 = _playerManager.createPlayer(name1);
+                player1.setColor(Color.BLUE_BOLD);
+                Player player2 = _playerManager.createPlayer(name2);
+                player2.setColor(Color.RED_BOLD);
 
-                while (true){
-                    promptColumn(player1);
-                    grid.draw();
-                    promptColumn(player2);
-                    grid.draw();
+                while (true) {
+                    _promptColumn(player1);
+                    _grid.draw();
+                    _promptColumn(player2);
+                    _grid.draw();
                 }
             case 2:
+                _displayRanking();
+                _displayMenu();
                 break;
             case 3:
+                Runtime.getRuntime().exit(0);
                 break;
             default:
                 Logger.println(Color.RED_BOLD, "Aquesta opció no existeix.");
-                displayMenu();
+                _displayMenu();
+        }
+    }
+
+    private static void _displayRanking() {
+        for (Player player : _playerManager.getRanking().values()) {
+            Logger.printf(Color.MAGENTA_BOLD, "%s : %d", player.getName(), player.getPoints());
         }
     }
 }

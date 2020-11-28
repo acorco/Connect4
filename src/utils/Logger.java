@@ -16,7 +16,7 @@ public class Logger {
         System.out.print(Color.RESET);
     }
 
-    public static void printf(Color color, String text, Object... params){
+    public static void printf(Color color, String text, Object... params) {
         System.out.print(color);
         System.out.printf(text, params);
         System.out.print(Color.RESET);
@@ -41,4 +41,12 @@ public class Logger {
             return getInt(prompt);
         }
     }
+
+    public static String getString(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        Logger.print(Color.YELLOW_BOLD, prompt);
+
+        return scanner.nextLine();
+    }
+
 }
