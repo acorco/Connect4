@@ -3,7 +3,7 @@ package game;
 import utils.Color;
 
 public class Player implements Comparable<Player> {
-    private String _name;
+    private final String _name;
     private Color _color;
     private int _points;
 
@@ -30,9 +30,12 @@ public class Player implements Comparable<Player> {
         return this._points;
     }
 
+    public void addPoint() {
+        _points++;
+    }
 
     @Override
     public int compareTo(Player player) {
-        return this._points - player.getPoints();
+        return player.getPoints() - this._points;
     }
 }

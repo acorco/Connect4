@@ -2,8 +2,8 @@ package game;
 
 import utils.Color;
 
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 public class PlayerManager {
     final private HashMap<String, Player> _players;
@@ -21,7 +21,10 @@ public class PlayerManager {
         return  _players.get(name);
     }
 
-    public TreeMap<String, Player> getRanking(){
-        return new TreeMap<>(_players);
+    public Player[] getRanking(){
+        Player[] players = _players.values().toArray(new Player[0]);
+        Arrays.sort(players);
+
+        return players;
     }
 }

@@ -7,6 +7,7 @@
 import game.Grid;
 import game.Player;
 import game.PlayerManager;
+import game.winner.WinnerValidator;
 import utils.Color;
 import utils.Logger;
 
@@ -46,22 +47,42 @@ public class Main {
                 String name1 = Logger.getString("Introdueix el nom del primer jugador >> ");
                 String name2 = Logger.getString("Introdueix el nom del segon jugador >> ");
 
-                int n = Logger.getInt("Enter N value >> ");
-                int m = Logger.getInt("Enter M value >> ");
-                _grid = new Grid(n, m);
-                _grid.draw();
-
                 Player player1 = _playerManager.createPlayer(name1);
                 player1.setColor(Color.BLUE_BOLD);
                 Player player2 = _playerManager.createPlayer(name2);
                 player2.setColor(Color.RED_BOLD);
 
-                while (true) {
-                    _promptColumn(player1);
-                    _grid.draw();
-                    _promptColumn(player2);
-                    _grid.draw();
+                int w = Logger.getInt("Enter W value >> ");
+                int h = Logger.getInt("Enter H value >> ");
+
+                Player[] players = new Player[]{ player1, player2 };
+
+                _grid = new Grid(w, h, players);
+                _grid.draw();
+
+                boolean winner = false;
+                while (!winner) {
+                    for (Player player : players) {
+                        _promptColumn(player);
+                        int i = _grid.lastI();
+                        int j= _grid.lastJ();
+
+                        Player winnerPlayer = WinnerValidator.checkWinners(_grid.getGrid(), players, i, j);
+
+                        if (winnerPlayer == null) {
+                            _grid.draw();
+                        } else {
+                            _grid.setWinner(player);
+                            _grid.draw();
+                            Logger.printf(Color.MAGENTA_BOLD, "\nEl ganador es: %s\n", player.getName());
+
+                            winner = true;
+                            break;
+                        }
+                    }
                 }
+
+                _displayMenu();
             case 2:
                 _displayRanking();
                 _displayMenu();
@@ -76,8 +97,8 @@ public class Main {
     }
 
     private static void _displayRanking() {
-        for (Player player : _playerManager.getRanking().values()) {
-            Logger.printf(Color.MAGENTA_BOLD, "%s : %d", player.getName(), player.getPoints());
+        for (Player player : _playerManager.getRanking()) {
+            Logger.printf(Color.MAGENTA_BOLD, "%s : %d%n", player.getName(), player.getPoints());
         }
     }
 }
