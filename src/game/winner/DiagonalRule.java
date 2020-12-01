@@ -2,7 +2,6 @@ package game.winner;
 
 import game.Cell;
 import game.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +38,8 @@ public class DiagonalRule extends AbstractWinnerRule implements IWinnerRule{
                         }
                     } catch (Exception ignored) { }
                 }
+                diagonalCells.clear();
             }
-            diagonalCells.clear();
         }
 
         return null;

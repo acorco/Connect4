@@ -42,6 +42,15 @@ public class Logger {
         }
     }
 
+    public static int getInt(String prompt, int min){
+        int num = getInt(prompt);
+        if (min > num){
+            Logger.println(Color.RED_BOLD, "Error. Has d'introduir un número més gran de " + min);
+            return getInt(prompt, min);
+        }
+        return num;
+    }
+
     public static String getString(String prompt) {
         Scanner scanner = new Scanner(System.in);
         Logger.print(Color.YELLOW_BOLD, prompt);

@@ -7,6 +7,7 @@
 import game.Grid;
 import game.Player;
 import game.PlayerManager;
+import game.Tie;
 import game.winner.WinnerValidator;
 import utils.Color;
 import utils.Logger;
@@ -52,8 +53,8 @@ public class Main {
                 Player player2 = _playerManager.createPlayer(name2);
                 player2.setColor(Color.RED_BOLD);
 
-                int w = Logger.getInt("Enter W value >> ");
-                int h = Logger.getInt("Enter H value >> ");
+                int w = Logger.getInt("Enter W value >> ", 4);
+                int h = Logger.getInt("Enter H value >> ", 4);
 
                 Player[] players = new Player[]{ player1, player2 };
 
@@ -61,7 +62,8 @@ public class Main {
                 _grid.draw();
 
                 boolean winner = false;
-                while (!winner) {
+                boolean tie = false;
+                while (!winner && !tie) {
                     for (Player player : players) {
                         _promptColumn(player);
                         int i = _grid.lastI();
@@ -70,7 +72,11 @@ public class Main {
                         Player winnerPlayer = WinnerValidator.checkWinners(_grid.getGrid(), players, i, j);
 
                         if (winnerPlayer == null) {
+                            tie = Tie.validate(_grid.getGrid());
                             _grid.draw();
+                            if (tie){
+                                Logger.println(Color.YELLOW_BOLD, "No hi ha cap guanyador. Empat.");
+                            }
                         } else {
                             _grid.setWinner(player);
                             _grid.draw();

@@ -2,7 +2,6 @@ package game.winner;
 
 import game.Cell;
 import game.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 

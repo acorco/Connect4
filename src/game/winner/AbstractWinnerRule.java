@@ -1,7 +1,6 @@
 package game.winner;
 
 import game.Cell;
-
 import java.util.List;
 
 public abstract class AbstractWinnerRule {
